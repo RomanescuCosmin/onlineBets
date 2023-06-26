@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Bets</title>
+
+    <style>
+        body {
+            background-color: dimgrey;
+            margin: 0;
+            padding: 0;
+            background-image: url('/imageLogo/pariuri-facebook_1200x630.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+        }
+
+        /* Bara de sus de meniu */
+        .navbar {
+            background-color: #333;
+            height: 50px;
+        }
+
+        /* Logo */
+        .navbar .logo {
+            float: left;
+            padding: 10px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Containerul formularului */
+        .container {
+            width: 400px;
+            margin: 100px auto 0;
+            padding: 30px;
+            background-color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="logo">Online Bets</div>
+</div>
+
+<div class="container">
+    <div class="logo">
+        <img src="/imageLogo/Pariuri-sportive.png" alt="Online Bets">
+    </div>
+    <form th:object="${userDto}" action="/registration" method="post">
+        <div class="form-group">
+            <label for="userName">User Name</label>
+            <input type="text" id="userName" placeholder="User Name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="number" id="phoneNumber" placeholder="Phone Number">
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
