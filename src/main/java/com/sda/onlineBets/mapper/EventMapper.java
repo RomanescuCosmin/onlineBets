@@ -15,10 +15,25 @@ public class EventMapper {
     return Event.builder()
             .teamA(eventDto.getTeamA())
             .teamB(eventDto.getTeamB())
-            .oddEvent(OddEvent.valueOf(eventDto.getOddEvent()))
+            .oddTeamA(eventDto.getOddTeamA())
+            .oddTeamB(eventDto.getOddTeamB())
+            .oddX(eventDto.getOddX())
             .category(Category.valueOf(eventDto.getCategory()))
             .dateEvent(LocalDate.parse(eventDto.getDateEvent().toString()))
             .build();
+
+    }
+
+    public EventDto map(Event event){
+        return  EventDto.builder()
+                .teamA(event.getTeamA())
+                .teamB(event.getTeamB())
+                .category(event.getCategory().toString())
+                .dateEvent(LocalDate.parse(event.getDateEvent().toString()))
+                .oddTeamA(event.getOddTeamA())
+                .oddTeamB(event.getOddTeamB())
+                .oddX(event.getOddX())
+                .build();
     }
 
 

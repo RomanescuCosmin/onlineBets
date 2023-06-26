@@ -15,7 +15,9 @@ public class EventDto {
     private String teamA;
     private String teamB;
     private LocalDate dateEvent;
-    private String oddEvent;
+    private String oddTeamA;
+    private String oddTeamB;
+    private String oddX;
     private String category;
 
 

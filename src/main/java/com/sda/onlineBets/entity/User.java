@@ -1,13 +1,11 @@
 package com.sda.onlineBets.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
+
 
 @Entity
 @Getter
@@ -26,7 +24,10 @@ public class User {
     private String email;
     private String password;
     private LocalDate dateOfBirth;
-    private long phoneNumber;
+    private String phoneNumber;
+
+    @OneToMany(mappedBy = "user")
+    private List<Bet> bets;
 
 
 }

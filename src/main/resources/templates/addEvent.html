@@ -50,16 +50,29 @@
         </div>
 
         <div class="row mb-3">
-            <label  for="oddEvent" class="col-sm-2 col-form-label"> Odd Event </label>
+            <label  for="oddTeamA" class="col-sm-2 col-form-label"> What are the odds for first team to win? </label>
             <div class="col-sm-10">
-                <select th:field="*{oddEvent}" class="form-control" id="oddEvent" placeholder="Team" required>
-                <option value="oddTeamA"> 1 </option>
-                <option value="oddTeamB"> 2 </option>
-                <option value="oddEqual"> x </option>
+                <input th:field="*{oddTeamA}" class="form-control" id="oddTeamA" placeholder="Odd Team A" required>
 
 <!--                    <option th:each="specificOpt : ${T(com.sda.onlineBets.enums.OddEvent).values()}"-->
 <!--                            th:value="${specificOpt}" th:text="${specificOpt}"></option>-->
-                </select>
+                </input>
+
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label  for="oddTeamB" class="col-sm-2 col-form-label">  What are the odds for second team to win?</label>
+            <div class="col-sm-10">
+                <input th:field="*{oddTeamB}" class="form-control" id="oddTeamB" placeholder="Odd Team B" required>
+
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label  for="oddX" class="col-sm-2 col-form-label"> What are the odds for a draw? </label>
+            <div class="col-sm-10">
+                <input th:field="*{oddX}" class="form-control" id="oddX" placeholder="Odd X" required>
+
             </div>
         </div>
 

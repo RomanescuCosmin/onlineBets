@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -22,12 +23,15 @@ public class Event {
     private String teamA;
     private String teamB;
     private LocalDate dateEvent;
-
-    @Enumerated(value = EnumType.STRING)
-    private OddEvent oddEvent;
+    private String oddTeamA;
+    private String oddTeamB;
+    private String oddX;
 
     @Enumerated(value = EnumType.STRING)
     private Category category;
+
+    @OneToMany(mappedBy = "event")
+    private List<Bet> bets;
 
 
 }

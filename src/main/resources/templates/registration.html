@@ -91,23 +91,23 @@
     <form th:object="${userDto}" action="/registration" method="post">
         <div class="form-group">
             <label for="userName">User Name</label>
-            <input type="text" id="userName" placeholder="User Name">
+            <input th:field="*{userName}" type="text" id="userName" placeholder="User Name">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" placeholder="Email">
+            <input th:field="*{email}" type="text" id="email" placeholder="Email">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Password">
+            <input th:field="*{password}" type="password" id="password" placeholder="Password">
         </div>
         <div class="form-group">
             <label for="dateOfBirth">Date of Birth</label>
-            <input type="date" id="dateOfBirth">
+            <input th:field="*{dateOfBirth}" type="date" id="dateOfBirth">
         </div>
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input type="number" id="phoneNumber" placeholder="Phone Number">
+            <input th:field="*{phoneNumber}" type="text" id="phoneNumber" placeholder="Phone Number">
         </div>
         <input type="submit" value="Submit">
     </form>

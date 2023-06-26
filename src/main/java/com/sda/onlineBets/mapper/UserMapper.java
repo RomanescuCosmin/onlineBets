@@ -14,11 +14,13 @@ public class UserMapper {
         return User.builder()
                 .userName(userDto.getUserName())
                 .email(userDto.getEmail())
-                .phoneNumber(Long.parseLong(userDto.getPhoneNumber()))
+                .phoneNumber(userDto.getPhoneNumber())
                 .dateOfBirth(LocalDate.parse(userDto.getDateOfBirth()))
                 .password(userDto.getPassword())
                 .build();
 
     }
+
+
 
 }
