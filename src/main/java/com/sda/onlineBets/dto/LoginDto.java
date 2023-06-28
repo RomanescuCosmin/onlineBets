@@ -17,4 +17,5 @@ public class LoginDto {
 
     @Size(min=3, message="Password is too short!")
     private String password;
+
 }

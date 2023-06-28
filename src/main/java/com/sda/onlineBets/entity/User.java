@@ -1,5 +1,6 @@
 package com.sda.onlineBets.entity;
 
+import com.sda.onlineBets.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,8 @@ public class User {
     private LocalDate dateOfBirth;
     private String phoneNumber;
 
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
     @OneToMany(mappedBy = "user")
     private List<Bet> bets;
 

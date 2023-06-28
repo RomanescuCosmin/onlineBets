@@ -21,4 +21,5 @@ public class EventDto {
     private String category;
 
 
+
 }

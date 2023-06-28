@@ -7,9 +7,7 @@ import com.sda.onlineBets.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EventService {
@@ -20,9 +18,11 @@ public class EventService {
     private EventRepository eventRepository;
 
     public void addEvent(EventDto eventDto) {
+
         Event event = eventMapper.map(eventDto);
         eventRepository.save(event);
     }
+
 
     public List<EventDto> getAllEventDtoList() {
         Iterable<Event> eventList = eventRepository.findAll();
@@ -31,7 +31,13 @@ public class EventService {
             EventDto eventDto = eventMapper.map(event);
             eventDtoList.add(eventDto);
         }
+        System.out.println(eventDtoList.size());
         return eventDtoList;
 
     }
+
+
 }
+
+
+

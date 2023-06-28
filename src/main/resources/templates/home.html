@@ -1,11 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Online Bets</title>
+    <title>Online Bets </title>
+    <link rel="stylesheet"  type="text/css" href="/cssStyle/homeStyle.css">
+
 </head>
 <body>
-This is the home page!
+<nav class="navbar">
+    <div class="logo">
+        <img src="/static/imageLogo/Pariuri-sportive.png" alt="Online Bets Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+    </ul>
+    <ul class="auth-links">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/registration">Registration</a></li>
+    </ul>
+</nav>
 
+<div class="container">
+    <h1>Welcome to Online Bets</h1>
+    <p>Start placing your bets and enjoy the thrill of sports betting!</p>
+
+    <div th:each="eventDto:${eventDtoList}" class="card">
+        <img src="/static/imageLogo/SeriaA.png" >
+        <h1> Italy - Seria A </h1>
+
+        <p>
+            <span th:text="${eventDto.teamA}"></span>
+
+            vs
+
+            <span th:text="${eventDto.teamB}"></span>
+
+          <span th:text="${eventDto.oddTeamA}"></span>,
+            <span th:text="${eventDto.oddTeamB}"></span>,
+            <span th:text="${eventDto.oddX}"></span>
+        </p>
+    </div>
+
+
+</div>
 </body>
 </html>

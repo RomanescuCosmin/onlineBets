@@ -4,6 +4,7 @@ import com.sda.onlineBets.dto.EventDto;
 import com.sda.onlineBets.dto.LoginDto;
 import com.sda.onlineBets.dto.UserDto;
 import com.sda.onlineBets.service.EventService;
+import com.sda.onlineBets.service.LoginService;
 import com.sda.onlineBets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Controller
@@ -24,28 +25,39 @@ public class MvcController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LoginService loginService;
+
     @GetMapping("/home")
     public String getHome(Model model) {
         System.out.println("S-a apelat home page ! ");
-        List<EventDto> eventDto=eventService.getAllEventDtoList();
-        model.addAttribute("eventDto",eventDto);
+        List<EventDto> eventDtoList = eventService.getAllEventDtoList();
+        model.addAttribute("eventDtoList", eventDtoList);
         return "home";
 
     }
 
     @GetMapping("/login")
-    public String getLogin(Model model){
+    public String getLogin(Model model) {
         System.out.println("S-a apelat login page");
-        LoginDto loginDto=new LoginDto();
-        model.addAttribute("loginDto",loginDto);
+        LoginDto loginDto = new LoginDto();
+        model.addAttribute("loginDto", loginDto);
         return "login";
     }
 
     @PostMapping("/login")
-    public String postLogin(@ModelAttribute(name = "loginDto") LoginDto loginDto, Model model, BindingResult bindingResult){
+    public String postLogin(@ModelAttribute(name = "loginDto") LoginDto loginDto, Model model, BindingResult bindingResult) {
         System.out.println(loginDto);
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "login";
+        }
+        Boolean loginSuccessful = loginService.login(loginDto);
+        if (loginSuccessful) {
+            model.addAttribute("loginMessage", "Login was succesful!");
+
+        } else {
+            model.addAttribute("loginMessage", "Email failed!");
+
         }
         return "login";
 
@@ -60,8 +72,11 @@ public class MvcController {
     }
 
     @PostMapping("/registration")
-    public String postRegistration(@ModelAttribute(name = "userDto") UserDto userDto) {
+    public String postRegistration(@ModelAttribute(name = "userDto") UserDto userDto, BindingResult bindingResult) {
         System.out.println("S-a apelat registration post!");
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
         userService.createUser(userDto);
         return "redirect:/registration";
     }
@@ -79,7 +94,6 @@ public class MvcController {
         System.out.println(eventDto);
         eventService.addEvent(eventDto);
         return "redirect:/addEvent";
-
     }
 
 
