@@ -2,9 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Online Bet-Login</title>
+    <title>Online Bet </title>
+    <link rel="stylesheet" type="text/css" href="/cssStyle/loginStyle.css">
 </head>
 <body>
+<nav class="navbar">
+    <div class="logo">
+        <a href="/home">
+            <img src="/imageLogo/Pariuri-sportive.png" alt="Online Bets Logo">
+        </a>
+
+
+    </div>
+    <ul class="nav-links">
+        <li><a href="/home">Sport</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+    </ul>
+    <ul class="auth-links">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/registration">Registration</a></li>
+    </ul>
+</nav>
 
 <div class="container">
 
@@ -23,5 +41,16 @@
 
     </form>
 </div>
+<hr class="page-end-line">
+
+
+<div class="partners">
+    <span class="partner-label">Partener oficial</span>
+    <img class="partners-image" src="/imageLogo/brasov.png" alt="Partner 1" >
+    <img class="partners-image" src="/imageLogo/dinamo.png" alt="Partner 2" >
+
+
+</div>
+
 </body>
 </html>

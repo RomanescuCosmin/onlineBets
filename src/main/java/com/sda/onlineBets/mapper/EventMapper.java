@@ -2,8 +2,7 @@ package com.sda.onlineBets.mapper;
 
 import com.sda.onlineBets.dto.EventDto;
 import com.sda.onlineBets.entity.Event;
-import com.sda.onlineBets.enums.Category;
-import com.sda.onlineBets.enums.OddEvent;
+import com.sda.onlineBets.enums.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -20,6 +19,8 @@ public class EventMapper {
             .oddX(eventDto.getOddX())
             .category(Category.valueOf(eventDto.getCategory()))
             .dateEvent(LocalDate.parse(eventDto.getDateEvent().toString()))
+            .league(League.valueOf(eventDto.getLeague()))
+
             .build();
 
     }
@@ -33,6 +34,9 @@ public class EventMapper {
                 .oddTeamA(event.getOddTeamA())
                 .oddTeamB(event.getOddTeamB())
                 .oddX(event.getOddX())
+                .league(event.getLeague() == null ? "" : event.getLeague().getDisplayName() )
+
+                .eventId(String.valueOf(event.getId()))
                 .build();
     }
 

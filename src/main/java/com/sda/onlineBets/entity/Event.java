@@ -1,7 +1,6 @@
 package com.sda.onlineBets.entity;
 
-import com.sda.onlineBets.enums.Category;
-import com.sda.onlineBets.enums.OddEvent;
+import com.sda.onlineBets.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +25,10 @@ public class Event {
     private String oddTeamA;
     private String oddTeamB;
     private String oddX;
+
+    private League league;
+//    private BasketLeague basketLeague;
+//    private TennisLeague tennisLeague;
 
     @Enumerated(value = EnumType.STRING)
     private Category category;

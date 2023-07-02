@@ -28,8 +28,6 @@
             </div>
         </div>
 
-
-
         <div class="row mb-3">
             <label  for="teamA" class="col-sm-2 col-form-label"> First Team </label>
             <div class="col-sm-10">
@@ -42,6 +40,18 @@
                 <input th:field="*{teamB}" type="text" class="form-control" id="teamB" placeholder="Team" required>
             </div>
         </div>
+
+        <div class="row mb-3">
+            <label  for="league" class="col-sm-2 col-form-label"> League </label>
+            <div class="col-sm-10">
+                <select th:field="*{league}" type="text" class="form-control" id="league"  required>
+                    <option th:each="specificOpt : ${T(com.sda.onlineBets.enums.League).values()}"
+                            th:value="${specificOpt}" th:text="${specificOpt}"></option>
+                </select>
+
+            </div>
+        </div>
+
         <div class="row mb-3">
             <label  for="dateEvent" class="col-sm-2 col-form-label"> Date Event </label>
             <div class="col-sm-10">
@@ -54,9 +64,7 @@
             <div class="col-sm-10">
                 <input th:field="*{oddTeamA}" class="form-control" id="oddTeamA" placeholder="Odd Team A" required>
 
-<!--                    <option th:each="specificOpt : ${T(com.sda.onlineBets.enums.OddEvent).values()}"-->
-<!--                            th:value="${specificOpt}" th:text="${specificOpt}"></option>-->
-                </input>
+
 
             </div>
         </div>

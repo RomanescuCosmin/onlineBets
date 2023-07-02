@@ -23,7 +23,8 @@ public class SecurityConfig {
             auth.requestMatchers("/cssStyle/*").permitAll();
 
             auth.requestMatchers("/addEvent").permitAll();
-
+            auth.requestMatchers("/imageLogo/*").permitAll();
+            auth.requestMatchers("/addBet").permitAll();
 
             auth.requestMatchers("/home").authenticated();
 

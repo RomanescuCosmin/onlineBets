@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @ToString
 public class EventDto {
 
+    private String eventId;
     private String teamA;
     private String teamB;
     private LocalDate dateEvent;
@@ -19,6 +20,9 @@ public class EventDto {
     private String oddTeamB;
     private String oddX;
     private String category;
+    private String league;
+//    private String basketLeague;
+//    private String tennisLeague;
 
 
 

@@ -2,6 +2,7 @@ package com.sda.onlineBets.controller;
 
 import com.sda.onlineBets.dto.EventDto;
 import com.sda.onlineBets.dto.LoginDto;
+import com.sda.onlineBets.dto.SelectionDto;
 import com.sda.onlineBets.dto.UserDto;
 import com.sda.onlineBets.service.EventService;
 import com.sda.onlineBets.service.LoginService;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Controller
 public class MvcController {
+
     @Autowired
     private EventService eventService;
 
@@ -33,6 +35,7 @@ public class MvcController {
         System.out.println("S-a apelat home page ! ");
         List<EventDto> eventDtoList = eventService.getAllEventDtoList();
         model.addAttribute("eventDtoList", eventDtoList);
+
         return "home";
 
     }
@@ -78,7 +81,7 @@ public class MvcController {
             return "registration";
         }
         userService.createUser(userDto);
-        return "redirect:/registration";
+        return "redirect:/login";
     }
 
     @GetMapping("/addEvent")
@@ -96,5 +99,9 @@ public class MvcController {
         return "redirect:/addEvent";
     }
 
+    @GetMapping("/addBet")
+    public String addBetGet() {
+        return "redirect:home";
+    }
 
 }

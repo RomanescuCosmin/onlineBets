@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Bets </title>
-    <link rel="stylesheet"  type="text/css" href="/cssStyle/homeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/cssStyle/homeStyle.css">
 
 </head>
 <body>
 <nav class="navbar">
     <div class="logo">
-        <img src="/static/imageLogo/Pariuri-sportive.png" alt="Online Bets Logo">
+        <a href="/home">
+            <img src="/imageLogo/Pariuri-sportive.png" alt="Online Bets Logo">
+        </a>
+
+
     </div>
     <ul class="nav-links">
-        <li><a href="/home">Home</a></li>
+        <li><a href="/home">Sport</a></li>
         <li><a href="/contact">Contact Us</a></li>
     </ul>
     <ul class="auth-links">
@@ -25,24 +29,122 @@
     <h1>Welcome to Online Bets</h1>
     <p>Start placing your bets and enjoy the thrill of sports betting!</p>
 
-    <div th:each="eventDto:${eventDtoList}" class="card">
-        <img src="/static/imageLogo/SeriaA.png" >
-        <h1> Italy - Seria A </h1>
+    <div class="categories">
+        <div class="category-box">
+            <img src="/imageLogo/soocer.avif" alt="Fotbal">
+            <h3>Football</h3>
+        </div>
+        <div class="category-box">
+            <img src="/imageLogo/basket.jpeg" alt="Basket">
+            <h3>Basket</h3>
+        </div>
+        <div class="category-box">
+            <img src="/imageLogo/tenis.jpg" alt="Tenis">
+            <h3>Tennis</h3>
+        </div>
+    </div>
 
-        <p>
-            <span th:text="${eventDto.teamA}"></span>
+    <div><img src="/imageLogo/soocer.avif" alt="Football" class="football-image">
 
-            vs
+        <div th:each="eventDto:${eventDtoList}" class="card-small-card">
+            <div class="league">
+                <img th:if="${eventDto.league =='Italy - Seria A'}" src="/imageLogo/SeriaA.png">
+                <img th:if="${eventDto.league =='Spain - La Liga'}" src="/imageLogo/LaLiga.png">
+                <img th:if="${eventDto.league =='England - Premier League'}" src="/imageLogo/PremierLeague.png">
+                <img th:if="${eventDto.league =='Romanian Liga 1 - Superliga'}" src="/imageLogo/Romania-Superliga.png">
+                <h1 th:text="${eventDto.league}"></h1>
 
-            <span th:text="${eventDto.teamB}"></span>
+            </div>
+<!--            <div class="leagueBasket">-->
+<!--                <img th:if="${eventDto.basketLeague =='SUA - NBA'}" src="/imageLogo/SeriaA.png">-->
+<!--                <img th:if="${eventDto.basketLeague =='Switzerland - SB LEAGUE'}" src="/imageLogo/LaLiga.png">-->
+<!--                <img th:if="${eventDto.basketLeague =='France - LNB'}" src="/imageLogo/PremierLeague.png">-->
+<!--                <img th:if="${eventDto.basketLeague =='SPAIN - ACB'}" src="/imageLogo/Romania-Superliga.png">-->
+<!--                <img th:if="${eventDto.basketLeague =='TURKISH - Super Lig'}" src="/imageLogo/Romania-Superliga.png">-->
+<!--                <h1 th:text="${eventDto.basketLeague}"></h1>-->
+<!--            </div>-->
 
-          <span th:text="${eventDto.oddTeamA}"></span>,
-            <span th:text="${eventDto.oddTeamB}"></span>,
-            <span th:text="${eventDto.oddX}"></span>
-        </p>
+            <p>
+                <span th:text="${eventDto.teamA}"></span>
+
+                vs
+
+                <span th:text="${eventDto.teamB}"></span>
+
+
+                <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=1'">
+                    <span> 1-</span>
+                    <span th:text="${ eventDto.oddTeamA}"></span>
+                </a>
+
+
+                <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=x'">
+                    <span> x-</span>
+                    <span th:text="${eventDto.oddX}"></span>
+                </a>
+
+
+                <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=2'">
+                    <span> 2-</span>
+                    <span th:text="${eventDto.oddTeamB}"></span>
+                </a>
+            </p>
+
+
+        </div>
     </div>
 
 
 </div>
+
+</div>
+<div class="bet-container">
+    <div class="bet-box">
+        <span class="bet-icon">Bilet</span>
+        <div id="selections-container">
+
+        </div>
+        <span class="bet-total-odd">Cota totală: 0</span>
+        <input class="bet-stake-input" placeholder="Miza (RON):">
+        <span class="bet-potential-winning">Câștig posibil (RON): 0</span>
+        <a href="/home" class="bet-link">Pariază acum</a>
+    </div>
+</div>
+<div class="advertisement-container">
+    <img src="/imageLogo/man-marin.jpeg" alt="Advertisement 1">
+    <img src="/imageLogo/super.jpeg" alt="Advertisement 2">
+    <img src="/imageLogo/777.jpeg" alt="Advertisement 3" class="right-image">
+</div>
+<hr class="page-end-line">
+
+<div class="support-container">
+    <h2>Suport</h2>
+    <p>Număr de telefon: 0123456789</p>
+    <p>Program: Luni - Vineri: 9:00 - 17:00</p>
+</div>
+
+<div class="payment-methods-container">
+    <h2>Metode de plată</h2>
+    <div class="payment-methods">
+        <img src="/imageLogo/visa-payment-card1873.jpg" alt="Metoda 1" width="100">
+        <img src="/imageLogo/Paysafecard_logo.svg.png" alt="Metoda 2" width="200">
+
+    </div>
+</div>
+
+<div class="footer">
+    <p>©2023 Hattrick PSK d.o.o. Toate drepturile rezervate. Site-ul www.pariurisportive.ro este deținut și
+        administrat de către Hattrick PSK d.o.o., o companie din Croația, având sediul social în Dugopolje,
+        Leopolda Mandica 14, CIF: 35891160. Hattrick PSK d.o.o. este licențiată în România de către
+        Oficiul Național pentru Jocuri de Noroc (ONJN) prin Licența cu numărul L1160652W000306 valabilă
+        de la 1 august 2016 până la 31 iulie 2026 și este autorizată să exploateze activitatea de jocuri de noroc
+        la distanță în baza deciziei având numărul 1570/18.07.2022 valabilă de la 01.08.2022-31.07.2023. Pot beneficia
+        de
+        serviciile Casa Pariurilor doar persoanele cu vârsta minimă de 18 ani. Fiecare jucător pariază pe propria
+        răspundere și trebuie să se asigure că acționează în conformitate cu legislația în vigoare atunci când accesează
+        site-ul
+        casapariurilor.ro. Jocurile de noroc pot crea dependență. Jucați responsabil!</p>
+</div>
+
 </body>
 </html>

@@ -1,35 +1,60 @@
 
 body {
-    background-color: dimgrey;
-    margin: 0;
-    padding: 0;
-    background-image: url('static/imageLogo/pariuri-facebook_1200x630.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
 }
+
 
 /* Bara de sus de meniu */
 .navbar {
-    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e02d2d;
     height: 50px;
+    padding: 0 20px;
+    color: #f1efef;
 }
 
-/* Logo */
-.navbar .logo {
-    float: left;
-    padding: 10px;
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    margin-right: auto;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.nav-links a {
     color: #fff;
-    font-size: 18px;
-    font-weight: bold;
+    text-decoration: none;
 }
 
+.auth-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.auth-links li {
+    margin-right: 10px;
+}
+
+.auth-links a {
+    color: #fff;
+    text-decoration: none;
+}
 /* Containerul formularului */
 .container {
     width: 400px;
     margin: 100px auto 0;
     padding: 30px;
-    background-color: #333;
+    background-color: #e02d2d;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
