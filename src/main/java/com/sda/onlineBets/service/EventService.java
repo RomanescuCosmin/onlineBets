@@ -7,7 +7,9 @@ import com.sda.onlineBets.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -34,6 +36,11 @@ public class EventService {
         System.out.println(eventDtoList.size());
         return eventDtoList;
 
+    }
+
+    public Map<String, List<EventDto>> groupEventsByLeague(List<EventDto> events) {
+        return events.stream()
+                .collect(Collectors.groupingBy(EventDto::getLeague));
     }
 
 

@@ -2,10 +2,23 @@
 <html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Online Bet </title>
-    <link rel="stylesheet" type="text/css" href="/cssStyle/loginStyle.css">
+    <title>My Bet</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/cssStyle/myBetStyle.css">
 </head>
 <body>
+
 <nav class="navbar">
     <div class="logo">
         <a href="/home">
@@ -35,33 +48,30 @@
         </li>
     </ul>
 </nav>
-<div class="container">
-
-    <form  action="/login" method="post">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input name="username" type="text" id="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <label for="password"> Password </label>
-            <input name="password" type="password" id="password" placeholder=" Password ">
-        </div>
-        <button type="submit">
-            Login
-        </button>
-
-    </form>
-</div>
-<hr class="page-end-line">
 
 
-<div class="partners">
-    <span class="partner-label">Partener oficial</span>
-    <img class="partners-image" src="/imageLogo/brasov.png" alt="Partner 1" >
-    <img class="partners-image" src="/imageLogo/dinamo.png" alt="Partner 2" >
 
-
-</div>
-
+<form th:object="${betDtoList}" method="get" action="/myBet">
+<table>
+    <thead>
+    <tr>
+        <th>Eveniment</th>
+        <th>Selectie</th>
+        <th>Suma plasata</th>
+        <th>Data si ora</th>
+        <th>Starea pariului</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="betDto : ${betDtoList}">
+        <td th:text="${betDto.event}"></td>
+        <td th:text="${betDto.selection}"></td>
+        <td th:text="${betDto.stake}"></td>
+        <td th:text="${betDto.dateAndTime}"></td>
+        <td th:text="${betDto.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</form>
 </body>
 </html>

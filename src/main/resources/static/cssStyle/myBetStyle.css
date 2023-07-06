@@ -1,0 +1,47 @@
+
+/* Navigație */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e02d2d;
+    height: 50px;
+    padding: 0 20px;
+    color: #f1efef;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    margin-right: auto;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.auth-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+
+}
+
+.auth-links li {
+    margin-right: 10px;
+}
+
+.auth-links a {
+    color: #fff;
+    text-decoration: none;
+}

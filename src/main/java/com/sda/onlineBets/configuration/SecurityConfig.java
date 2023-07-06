@@ -21,10 +21,12 @@ public class SecurityConfig {
 
             auth.requestMatchers("/registration").permitAll();
             auth.requestMatchers("/cssStyle/*").permitAll();
-
+            auth.requestMatchers("/addEvent").hasRole("ADMIN");
             auth.requestMatchers("/addEvent").permitAll();
             auth.requestMatchers("/imageLogo/*").permitAll();
-            auth.requestMatchers("/addBet").permitAll();
+            auth.requestMatchers("/addBet").authenticated();
+            auth.requestMatchers("/contact").permitAll();
+            auth.requestMatchers("/myBet").authenticated();
 
             auth.requestMatchers("/home").authenticated();
 

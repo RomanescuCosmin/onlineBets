@@ -20,7 +20,9 @@ public class UserValidator {
 
     public void validate(UserDto userDto, BindingResult bindingResult) {
         validateDateOfBirth(userDto, bindingResult);
-
+        validateUniqueEmail(userDto, bindingResult);
+        validateEmailContainsSpecialCharacters(userDto, bindingResult);
+        validateUserNameNotEmpty(userDto, bindingResult);
     }
 
     private void validateDateOfBirth(UserDto userDto, BindingResult bindingResult) {
@@ -39,6 +41,7 @@ public class UserValidator {
 
         }
     }
+
     private static void validateEmailContainsSpecialCharacters(UserDto userDto, BindingResult bindingResult) {
         if (!userDto.getEmail().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
             FieldError fieldError = new FieldError("userDto", "email", "Email invalid !");
@@ -55,21 +58,19 @@ public class UserValidator {
     }
 
 
-
     private static void validateUserNameNotEmpty(UserDto userDto, BindingResult bindingResult) {
         if (userDto.getUserName().isEmpty()) {
             FieldError fieldError = new FieldError("userDto", "lastName", "Last name should not be empty!");
             bindingResult.addError(fieldError);
         }
-        try  {
+        try {
             LocalDate.parse(userDto.getDateOfBirth());
 
-        } catch (DateTimeParseException exception){
-            FieldError fieldError=new FieldError("userDto","dateOfBirth","Wrong format!");
+        } catch (DateTimeParseException exception) {
+            FieldError fieldError = new FieldError("userDto", "dateOfBirth", "Wrong format!");
             bindingResult.addError(fieldError);
         }
     }
-
 
 
 }

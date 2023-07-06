@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Component
 public class EventMapper {
     public Event map(EventDto eventDto) {
+        System.out.println("data si ora " + eventDto.getDateTimeEvent());
     return Event.builder()
             .teamA(eventDto.getTeamA())
             .teamB(eventDto.getTeamB())
@@ -18,7 +19,7 @@ public class EventMapper {
             .oddTeamB(eventDto.getOddTeamB())
             .oddX(eventDto.getOddX())
             .category(Category.valueOf(eventDto.getCategory()))
-            .dateEvent(LocalDate.parse(eventDto.getDateEvent().toString()))
+            .dateTimeEvent(LocalDateTime.parse(eventDto.getDateTimeEvent()))
             .league(League.valueOf(eventDto.getLeague()))
 
             .build();
@@ -30,7 +31,7 @@ public class EventMapper {
                 .teamA(event.getTeamA())
                 .teamB(event.getTeamB())
                 .category(event.getCategory().toString())
-                .dateEvent(LocalDate.parse(event.getDateEvent().toString()))
+                .dateTimeEvent(transformDateTime(event.getDateTimeEvent()))
                 .oddTeamA(event.getOddTeamA())
                 .oddTeamB(event.getOddTeamB())
                 .oddX(event.getOddX())
@@ -38,6 +39,10 @@ public class EventMapper {
 
                 .eventId(String.valueOf(event.getId()))
                 .build();
+    }
+
+    private String transformDateTime(LocalDateTime dateTimeEvent) {
+        return dateTimeEvent.toLocalDate().toString()+" at: "+dateTimeEvent.toLocalTime().toString();
     }
 
 

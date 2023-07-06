@@ -109,19 +109,39 @@ p {
     margin: 0;
 }
 
-.card-small-card p {
-    margin-bottom: 5px;
+.match-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
-.card-small-card a {
-    color: #333;
+.date-time {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.date,
+.time {
+    font-size: 12px;
+    margin: 0;
+}
+
+.vertical-line {
+    width: 1px;
+    height: 15px;
+    background-color: #444242;
+    margin: 0 5px;
+}
+
+.match-info p {
+    color: black;
+}
+
+.match-info a {
+    color: black;
     text-decoration: none;
 }
-
-.card-small-card a:hover {
-    text-decoration: underline;
-}
-
 /* Container de pariere */
 .bet-container {
     position: fixed;
@@ -177,9 +197,9 @@ p {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 0px; /* Poți ajusta această valoare pentru a modifica distanța față de elementele de mai sus */
-    position:absolute;
-    top: 40px;
-    width:max-content;
+    position: absolute;
+    top: 60px;
+    width:100px;
 }
 
 .advertisement-container img {

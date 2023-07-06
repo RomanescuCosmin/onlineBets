@@ -1,10 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pagina de Contact</title>
+
+    <link rel="stylesheet" type="text/css" href="/cssStyle/contactStyle.css">
+
 </head>
 <body>
+<nav class="navbar">
+    <div class="logo">
+        <a href="/home">
+            <img src="/imageLogo/Pariuri-sportive.png" alt="Online Bets Logo">
+        </a>
+
+
+    </div>
+    <ul class="nav-links">
+        <li sec:authorize="isAuthenticated()" th:classappend="${requestUrl == '/home' ? 'active' : ''}">
+            <a href="/home">Sport</a>
+        </li>
+        <li th:classappend="${requestUrl == '/contact' ? 'active' : ''}">
+            <a href="/contact">Contact Us</a>
+        </li>
+        <li><a href="/myBet">My Bet</a></li>
+    </ul>
+    <ul class="auth-links">
+        <li sec:authorize="isAnonymous()" th:classappend="${requestUrl == '/login' ? 'active' : ''}">
+            <a href="/login">Login</a>
+        </li>
+        <li sec:authorize="isAnonymous()" th:classappend="${requestUrl == '/registration' ? 'active' : ''}">
+            <a href="/registration">Registration</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="/logout"> Logout </a>
+        </li>
+    </ul>
+</nav>
+
+
+<header>
+    <h1>Contactează-ne!</h1>
+</header>
+
+<div id="contact-container">
+    <form id="contact-form" th:object="${contactDto}" action="/contact" method="post">
+        <label for="name">Nume:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Mesaj:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Trimite</button>
+    </form>
+</div>
+
+<div class="contact-success" th:if="${successMessage}">
+    <p th:text="${successMessage}"></p>
+</div>
+
+<hr>
+
+<footer>
+    <p>© 2023 Numele tău. Toate drepturile rezervate.</p>
+</footer>
+
+<div class="footer-line"></div>
+<footer>
+    <div class="sponsors-section">
+        <h2>SPONSORIZĂRILE NOASTRE</h2>
+        <p>Susținem sportul și fair-play-ul.</p>
+        <div class="sponsor-images-horizontal">
+            <img src="/imageLogo/Liverpool_FC.svg.webp" alt="Echipa 1">
+            <img src="/imageLogo/sporting.png" alt="Echipa 2">
+            <img src="/imageLogo/benfica.png" alt="Echipa 3">
+            <img src="/imageLogo/Paris_Saint-Germain_F.C..svg.webp" alt="Echipa 4">
+        </div>
+        <div class="vertical-line"></div>
+        <div class="sponsor-images-horizontal">
+            <img src="/imageLogo/dortmund.png" alt="Echipa 4">
+            <img src="/imageLogo/FC_Porto.svg.png" alt="Echipa 5">
+            <img src="/imageLogo/Atletico_Madrid_2017_logo.svg.png" alt="Echipa 6">
+            <img src="/imageLogo/SSC_Neapel.svg.png" alt="Echipa 7">
+            <img src="/imageLogo/bayern.png" alt="Echipa 8">
+            <img src="/imageLogo/AqdNllt.png" alt="Echipa 9">
+            <img src="/imageLogo/FCSB_logo.svg.png" alt="Echipa 10">
+        </div>
+    </div>
+    <div class="about-section">
+        <h2>Despre noi</h2>
+        <p>©2023 Hattrick PSK d.o.o. Toate drepturile rezervate.
+            Site-ul www.pariurisportive.ro este deținut și administrat de către Hattrick PSK d.o.o., o companie din
+            Croația,
+            având sediul social în Dugopolje, Leopolda Mandica 14, CIF: 35891160. Hattrick PSK d.o.o. este licențiată în
+            România de către Oficiul Național pentru Jocuri de Noroc (ONJN) prin Licența cu numărul L1160652W000306
+            valabilă
+            de la 1 august 2016 până la 31 iulie 2026 și este autorizată să exploateze activitatea de jocuri de noroc la
+            distanță în
+            baza deciziei având numărul 1570/18.07.2022 valabilă de la 01.08.2022-31.07.2023. Pot beneficia de
+            serviciile
+            Pariurilor Sportive doar persoanele cu vârsta minimă de 18 ani. Fiecare jucător pariază pe propria
+            răspundere și trebuie să se asigure că acționează în conformitate cu legislația în vigoare atunci când
+            accesează site-ul casapariurilor.ro. Jocurile de noroc pot crea dependență. Jucați responsabil!</p>
+        <div class="payment-methods-horizontal">
+            <img src="/imageLogo/Mastercard-Symbol.jpg" alt="Metoda de plată 1">
+            <img src="/imageLogo/visa-payment-card1873.jpg" alt="Metoda de plată 2">
+        </div>
+        <div class="mobile-apps-horizontal">
+            <img src="/imageLogo/android.webp" alt="Aplicație mobilă 1">
+            <img src="/imageLogo/Download_on_the_App_Store_Badge.svg.png" alt="Aplicație mobilă 2">
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

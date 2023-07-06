@@ -9,12 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class SelectionDto {
+
+    private String information;
     private String odd;
-    private String miza;
-    private String potentialWinning;
-    private String oddTeamA;
-    private String oddTeamB;
-    private String oddX;
+    private String eventId;
     private String selection;
 
 }
