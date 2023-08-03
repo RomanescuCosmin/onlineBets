@@ -53,7 +53,8 @@ public class MvcController {
 
         Map<String, List<EventDto>> groupedEvents = eventService.groupEventsByLeague(eventDtoList);
         model.addAttribute("groupedEvents", groupedEvents);
-
+        System.out.println(groupedEvents);
+        System.out.println(eventDtoList);
         return "home";
 
     }

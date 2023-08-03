@@ -61,79 +61,84 @@
 
     <div><img src="/imageLogo/soocer.avif" alt="Football" class="football-image">
 
-        <div th:each="eventDto:${eventDtoList}" class="card-small-card">
+        <div th:each="element:${groupedEvents}" class="card-small-card">
             <div class="league">
-                <img th:if="${eventDto.league =='Italy - Seria A'}" src="/imageLogo/SeriaA.png">
-                <img th:if="${eventDto.league =='Spain - La Liga'}" src="/imageLogo/LaLiga.png">
-                <img th:if="${eventDto.league =='England - Premier League'}" src="/imageLogo/PremierLeague.png">
-                <img th:if="${eventDto.league =='Romanian Liga 1 - Superliga'}" src="/imageLogo/Romania-Superliga.png">
-                <h1 th:text="${eventDto.league}"></h1>
+                <img th:if="${element.key =='Italy - Seria A'}" src="/imageLogo/SeriaA.png">
+                <img th:if="${element.key =='Spain - La Liga'}" src="/imageLogo/LaLiga.png">
+                <img th:if="${element.key =='England - Premier League'}" src="/imageLogo/PremierLeague.png">
+                <img th:if="${element.key =='Romanian Liga 1 - Superliga'}"
+                     src="/imageLogo/Romania-Superliga.png">
+                <h1 th:text="${element.key}"></h1>
 
             </div>
-            <div class="match-info">
-                <span th:text="${eventDto.dateTimeEvent}"></span>
-                <div class="vertical-line"></div>
-
-<!--            <div class="leagueBasket">-->
-<!--                <img th:if="${eventDto.basketLeague =='SUA - NBA'}" src="/imageLogo/SeriaA.png">-->
-<!--                <img th:if="${eventDto.basketLeague =='Switzerland - SB LEAGUE'}" src="/imageLogo/LaLiga.png">-->
-<!--                <img th:if="${eventDto.basketLeague =='France - LNB'}" src="/imageLogo/PremierLeague.png">-->
-<!--                <img th:if="${eventDto.basketLeague =='SPAIN - ACB'}" src="/imageLogo/Romania-Superliga.png">-->
-<!--                <img th:if="${eventDto.basketLeague =='TURKISH - Super Lig'}" src="/imageLogo/Romania-Superliga.png">-->
-<!--                <h1 th:text="${eventDto.basketLeague}"></h1>-->
-<!--            </div>-->
-
-            <p>
-                <span th:text="${eventDto.teamA}"></span>
-
-                vs
-
-                <span th:text="${eventDto.teamB}"></span>
+            <th:block th:each="eventDto:${element.value}">
 
 
 
-                <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=1'">
-                    <span> 1-</span>
-                    <span th:text="${ eventDto.oddTeamA}"></span>
-                </a>
+                <div class="match-info">
+                    <span th:text="${eventDto.dateTimeEvent}"></span>
+                    <div class="vertical-line"></div>
+
+                    <!--            <div class="leagueBasket">-->
+                    <!--                <img th:if="${eventDto.basketLeague =='SUA - NBA'}" src="/imageLogo/SeriaA.png">-->
+                    <!--                <img th:if="${eventDto.basketLeague =='Switzerland - SB LEAGUE'}" src="/imageLogo/LaLiga.png">-->
+                    <!--                <img th:if="${eventDto.basketLeague =='France - LNB'}" src="/imageLogo/PremierLeague.png">-->
+                    <!--                <img th:if="${eventDto.basketLeague =='SPAIN - ACB'}" src="/imageLogo/Romania-Superliga.png">-->
+                    <!--                <img th:if="${eventDto.basketLeague =='TURKISH - Super Lig'}" src="/imageLogo/Romania-Superliga.png">-->
+                    <!--                <h1 th:text="${eventDto.basketLeague}"></h1>-->
+                    <!--            </div>-->
+
+                    <p>
+                        <span th:text="${eventDto.teamA}"></span>
+
+                        vs
+
+                        <span th:text="${eventDto.teamB}"></span>
 
 
-
-                <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=x'">
-                    <span> x-</span>
-                    <span th:text="${eventDto.oddX}"></span>
-                </a>
-
-
-                <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=2'">
-                    <span> 2-</span>
-                    <span th:text="${eventDto.oddTeamB}"></span>
-                </a>
-
-            </p>
+                        <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=1'">
+                            <span> 1-</span>
+                            <span th:text="${ eventDto.oddTeamA}"></span>
+                        </a>
 
 
+                        <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=x'">
+                            <span> x-</span>
+                            <span th:text="${eventDto.oddX}"></span>
+                        </a>
+
+
+                        <a th:href="'/home?eventId='+${eventDto.eventId}+'&selection=2'">
+                            <span> 2-</span>
+                            <span th:text="${eventDto.oddTeamB}"></span>
+                        </a>
+
+                    </p>
+
+
+                </div>
+            </th:block>
         </div>
+
+
     </div>
-
-
-</div>
 
 </div>
 
 <div class="bet-container">
-    <form th:object="${stakeDto}" method="post" th:action="'/home?eventId='+${selectionDto.eventId}+'&selection='+${selectionDto.selection}" >
-    <div class="bet-box">
-        <span class="bet-icon">Bilet</span>
-        <div id="selections-container">
+    <form th:object="${stakeDto}" method="post"
+          th:action="'/home?eventId='+${selectionDto.eventId}+'&selection='+${selectionDto.selection}">
+        <div class="bet-box">
+            <span class="bet-icon">Bilet</span>
+            <div id="selections-container">
 
+            </div>
+            <span class="bet-total-odd" th:text=" ${'Cota totala ' + selectionDto.odd}"></span>
+            <span th:text="${selectionDto.information}"> </span>
+            <input th:field="*{stake}" class="bet-stake-input" placeholder="Miza (RON):">
+            <span class="bet-potential-winning">Câștig posibil (RON): 0</span>
+            <button type="submit" class="bet-link">Pariază acum</button>
         </div>
-        <span class="bet-total-odd" th:text=" ${'Cota totala ' + selectionDto.odd}"></span>
-        <span th:text="${selectionDto.information}"> </span>
-        <input th:field="*{stake}" class="bet-stake-input" placeholder="Miza (RON):">
-        <span class="bet-potential-winning">Câștig posibil (RON): 0</span>
-        <button type="submit" class="bet-link">Pariază acum</button>
-    </div>
     </form>
 </div>
 <div class="advertisement-container">
