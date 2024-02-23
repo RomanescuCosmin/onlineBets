@@ -21,7 +21,6 @@ import java.util.Optional;
 
 @Service
 public class BetService {
-
     private final BetMapper betMapper;
     private final BetRepository betRepository;
     private final UserRepository userRepository;
@@ -34,8 +33,6 @@ public class BetService {
         this.eventRepository = eventRepository;
         this.betMapper=betMapper;
     }
-
-
     public void placeBet(String eventId, String selection, StakeDto stakeDto, String userEmail) {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -45,10 +42,7 @@ public class BetService {
         if (user == null || !optionalEvent.isPresent()) {
             throw new RuntimeException("User or event not found");
         }
-
         Event event = optionalEvent.get();
-
-
         Bet bet = Bet.builder()
                 .user(user)
                 .event(event)
@@ -57,12 +51,9 @@ public class BetService {
                 .status(BetStatus.IN_DESFASURARE)
                 .selection(selection)
                 .build();
-
-
         // Am salvat pariul in baza de date
         betRepository.save(bet);
     }
-
     public List<BetDto> getAllBetDtoListByEmail(String email) {
         System.out.println("Email received : " + email);
         Iterable<Bet> betList = betRepository.findByUserEmail(email);

@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig  {
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -18,7 +18,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(auth -> {
-
             auth.requestMatchers("/registration").permitAll();
             auth.requestMatchers("/cssStyle/*").permitAll();
             auth.requestMatchers("/addEvent").hasRole("ADMIN");
@@ -27,13 +26,14 @@ public class SecurityConfig {
             auth.requestMatchers("/addBet").authenticated();
             auth.requestMatchers("/contact").permitAll();
             auth.requestMatchers("/myBet").authenticated();
-
             auth.requestMatchers("/home").authenticated();
 
         }).httpBasic();
-
         httpSecurity
-                .formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
+                .permitAll()
                 .and()
                 .logout().permitAll()
                 .and()
@@ -41,10 +41,6 @@ public class SecurityConfig {
                 .and()
                 .cors().disable().authorizeHttpRequests();
 
-
         return httpSecurity.build();
-
     }
-
-
 }

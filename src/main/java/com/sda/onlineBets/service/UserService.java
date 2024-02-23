@@ -1,6 +1,4 @@
 package com.sda.onlineBets.service;
-
-
 import com.sda.onlineBets.dto.UserDto;
 import com.sda.onlineBets.entity.User;
 import com.sda.onlineBets.mapper.UserMapper;
@@ -11,16 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class UserService {
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private UserMapper userMapper;
-
     public void createUser(UserDto userDto) {
         User user = userMapper.map(userDto);
         userRepository.save(user);
